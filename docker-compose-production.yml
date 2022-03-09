@@ -1,0 +1,27 @@
+version: '3.6'
+
+services:
+  web:
+    image: ghcr.io/joladnijo/joladnijo-webapp:${IMAGE_TAG}
+    container_name: joladnijo_web_${ENVIRONMENT}
+    expose:
+      - 80
+    networks:
+      - default
+      - hosting-with-docker_nginx_reverse_proxy
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST}
+    logging:
+      options:
+        max-size: '1m'
+        max-file: '3'
+
+volumes:
+  database_volume: {}
+
+networks:
+  hosting-with-docker_nginx_reverse_proxy:
+    external: true
+  default:
+    external: false
