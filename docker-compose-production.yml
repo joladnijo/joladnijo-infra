@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   web:
-    image: ghcr.io/joladnijo/joladnijo-webapp:latest
+    image: ghcr.io/joladnijo/joladnijo-webapp:${IMAGE_TAG}
     container_name: joladnijo_web_${ENVIRONMENT}
     expose:
       - 80
