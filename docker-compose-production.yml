@@ -3,7 +3,7 @@ version: '3.6'
 services:
   web:
     image: ghcr.io/joladnijo/joladnijo-webapp:latest
-    container_name: joladnijo_web
+    container_name: joladnijo_web_${ENVIRONMENT}
     expose:
       - 80
     networks:
