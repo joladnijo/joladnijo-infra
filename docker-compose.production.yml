@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   frontend:
-    image: ghcr.io/joladnijo/joladnijo-webapp:1.0.0
+    image: ghcr.io/joladnijo/joladnijo-webapp:1.0.11
 
   backend:
-    image: ghcr.io/joladnijo/joladnijo-backend:1.0.0
+    image: ghcr.io/joladnijo/joladnijo-backend:1.0.11
