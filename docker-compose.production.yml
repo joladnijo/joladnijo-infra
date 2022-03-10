@@ -1,0 +1,6 @@
+services:
+  frontend:
+    image: ghcr.io/joladnijo/joladnijo-webapp:1.0.0
+
+  backend:
+    image: ghcr.io/joladnijo/joladnijo-backend:1.0.0
