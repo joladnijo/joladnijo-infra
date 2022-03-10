@@ -27,6 +27,7 @@ services:
       - hosting-with-docker_nginx_reverse_proxy
     environment:
       - VIRTUAL_HOST=api.${VIRTUAL_HOST}
+      - VIRTUAL_PORT=8000
       - LETSENCRYPT_HOST=api.${VIRTUAL_HOST}
     logging:
       options:
