@@ -1,3 +1,5 @@
+version: 3.6
+
 services:
   frontend:
     image: ghcr.io/joladnijo/joladnijo-webapp:1.0.0
