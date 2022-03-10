@@ -1,5 +1,5 @@
 # Use this image as base
-FROM mariadb:10.7
+FROM mysql:5.7
 
 # Add custom settings
-COPY mariadb.cnf /etc/mysql/conf.d/zzz-mariadb.cnf
+COPY mysql.cnf /etc/mysql/conf.d/zzz-mysql.cnf
