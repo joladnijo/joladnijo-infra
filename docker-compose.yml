@@ -1,0 +1,72 @@
+version: '3.6'
+
+services:
+  frontend:
+    container_name: joladnijo_frontend_${ENVIRONMENT}
+    restart: always
+    expose:
+      - 80
+    networks:
+      - default
+      - hosting-with-docker_nginx_reverse_proxy
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST}
+    logging:
+      options:
+        max-size: '1m'
+        max-file: '3'
+
+  backend:
+    container_name: joladnijo_backend_${ENVIRONMENT}
+    restart: always
+    expose:
+      - 8000
+    networks:
+      - default
+      - hosting-with-docker_nginx_reverse_proxy
+    environment:
+      - VIRTUAL_HOST=api.${VIRTUAL_HOST}
+      - VIRTUAL_PORT=8000
+      - LETSENCRYPT_HOST=api.${VIRTUAL_HOST}
+      - DBNAME=${DATABASE_NAME}
+      - DBUSER=${DATABASE_USER}
+      - DBPASSWORD=${DATABASE_PASSWORD}
+      - DBHOST=${DATABASE_HOST}
+      - DBPORT=${DATABASE_PORT}
+      - SECRET_KEY=${SECRET_KEY}
+    logging:
+      options:
+        max-size: '1m'
+        max-file: '3'
+
+  database:
+    build:
+      context: ./configurations/database/
+      dockerfile: Dockerfile
+    container_name: joladnijo_database_${ENVIRONMENT}
+    restart: always
+    environment:
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD}
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    volumes:
+      - database_volume:/var/lib/mysql
+    expose:
+      - 3306
+    networks:
+      - default
+    logging:
+      options:
+        max-size: '1m'
+        max-file: '3'
+
+volumes:
+  database_volume: {}
+
+networks:
+  hosting-with-docker_nginx_reverse_proxy:
+    external: true
+  default:
+    external: false
