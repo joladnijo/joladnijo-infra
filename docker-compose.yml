@@ -5,12 +5,13 @@ services:
     container_name: joladnijo_frontend_${ENVIRONMENT}
     restart: always
     expose:
-      - 80
+      - 3000
     networks:
       - default
       - hosting-with-docker_nginx_reverse_proxy
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=${VIRTUAL_HOST}
     logging:
       options:
