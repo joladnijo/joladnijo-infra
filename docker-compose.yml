@@ -13,6 +13,7 @@ services:
       - VIRTUAL_HOST=${VIRTUAL_HOST}
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=${VIRTUAL_HOST}
+      - ENVIRONMENT=${ENVIRONMENT}
     logging:
       options:
         max-size: '1m'
