@@ -6,3 +6,11 @@ services:
 
   backend:
     image: ghcr.io/joladnijo/joladnijo-backend:1.0.19
+
+  database:
+    volumes:
+      - database_volume:/var/lib/mysql
+
+
+volumes:
+  database_volume: {}
