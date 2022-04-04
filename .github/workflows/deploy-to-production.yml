@@ -1,0 +1,29 @@
+# This worflow will be triggered when changes occur in `docker-compose.production.yml`, potentially when image tag is changed.
+name: Deploy services to production environment
+
+on:
+  push:
+    paths:
+      - 'docker-compose.production.yml'
+    branches:
+      - 'main'
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: executing remote ssh commands
+        uses: fifsky/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOSTNAME }}
+          user: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          command: |
+            cd joladnijo-infra-production
+            git checkout main
+            git pull
+            docker-compose -f docker-compose.yml -f docker-compose.production.yml pull 
+            docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d
