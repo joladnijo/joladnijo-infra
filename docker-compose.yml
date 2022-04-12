@@ -37,6 +37,7 @@ services:
       - DBHOST=${DATABASE_HOST}
       - DBPORT=${DATABASE_PORT}
       - SECRET_KEY=${SECRET_KEY}
+      - ENVIRONMENT=${ENVIRONMENT}
     logging:
       options:
         max-size: '1m'
