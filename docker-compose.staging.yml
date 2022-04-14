@@ -10,3 +10,6 @@ services:
       - JWT_AUDIENCE=https://api.${VIRTUAL_HOST}
       - JWT_KEYS=https://dev-ulmlyx6h.eu.auth0.com/.well-known/jwks.json
       - JWT_ISSUER=https://dev-ulmlyx6h.eu.auth0.com/
+      - DJANGO_SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME}
+      - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
+      - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
